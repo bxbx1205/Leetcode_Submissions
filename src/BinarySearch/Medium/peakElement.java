@@ -30,4 +30,49 @@ public class peakElement {
         }
         return -1;
     }
+
+    public static class CapacitytoShipPackagesWithinDDays {
+        static void main(String[] args) {
+            int[] weight = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            int days = 5;
+            System.out.println(shipWithinDays(weight, days));
+        }
+
+        static public int shipWithinDays(int[] weights, int days) {
+            int low = 0, high = 0;
+            for (int w : weights) {
+                low = Math.max(low, w);
+                high += w;
+            }
+
+            int ans = high;
+
+            while (low <= high) {
+                int mid = low + (high - low) / 2;
+                if (possible(weights, days, mid)) {
+                    ans = mid;
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+            return ans;
+        }
+
+        public static boolean possible(int[] weights, int days, int number) {
+            int weight = number;
+            int estiDate = 1;
+            for (int i = 0; i < weights.length; i++) {
+                if (weights[i] > weight) {
+                    estiDate++;
+                    weight = number;
+                }
+
+                weight = weight - weights[i];
+
+            }
+
+            return estiDate <= days;
+        }
+    }
 }
