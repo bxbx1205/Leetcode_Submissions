@@ -1,31 +1,32 @@
 class Solution {
-
-    private void recurse(int[] nums,List<List<Integer>> ans,List<Integer> ds, HashMap<Integer,Integer> map){  
-
- if (ds.size() == nums.length) {
-            ans.add(new ArrayList<>(ds));
-            return;
-        }
-        for(int i =0;i<nums.length;i++){
-            if(!(map.containsKey((i)))){
-                ds.add(nums[i]);
-                map.put(i,1);
-                 recurse(nums, ans, ds, map);
-                ds.remove(ds.size() - 1);
-                map.remove(i);
-            }
-        }
+    private void swap(int i, int j,int[]nums){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+        return;
     }
 
+    private void recurse(int index, int[] nums, List<List<Integer>> ans){
+        if(index==nums.length){
+        List<Integer> ds=new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            ds.add(nums[i]);
+        }
+        ans.add(new ArrayList<>(ds));
+        return;
+        }
 
+        for(int i=index;i<nums.length;i++){
+            swap(i,index,nums);
+            recurse(index+1,nums,ans);
+            swap(i,index,nums);
+        }
+
+    }
 
     public List<List<Integer>> permute(int[] nums) {
-        HashMap<Integer,Integer> map = new HashMap<>();
-        List<List<Integer>> ans=new ArrayList<>();
-        List<Integer> ds = new ArrayList<>();
-
-        recurse(nums,ans,ds,map);
-
-        return ans;
+        List<List<Integer>> ans= new ArrayList<>();
+        recurse(0,nums,ans);
+        return ans; 
     }
 }
