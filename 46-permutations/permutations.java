@@ -1,32 +1,41 @@
 class Solution {
-    private void swap(int i, int j,int[]nums){
-        int temp=nums[i];
+
+    static void swap(int i, int j, int[] nums){
+        int temp =nums[i];
         nums[i]=nums[j];
         nums[j]=temp;
+
         return;
     }
 
-    private void recurse(int index, int[] nums, List<List<Integer>> ans){
+
+    static void recurse(int index,List<List<Integer>> ans,int[] nums){
         if(index==nums.length){
-        List<Integer> ds=new ArrayList<>();
-        for(int i=0;i<nums.length;i++){
-            ds.add(nums[i]);
-        }
-        ans.add(new ArrayList<>(ds));
-        return;
+
+            List<Integer> ds = new ArrayList<>();
+            for(int i=0;i<nums.length;i++){
+                ds.add(nums[i]);
+            }
+
+            ans.add(ds);
+            return;
         }
 
-        for(int i=index;i<nums.length;i++){
+        
+
+        for(int i =index;i<nums.length;i++){
             swap(i,index,nums);
-            recurse(index+1,nums,ans);
+            recurse(index+1,ans,nums);
             swap(i,index,nums);
         }
-
     }
-
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ans= new ArrayList<>();
-        recurse(0,nums,ans);
-        return ans; 
+
+
+        List<List<Integer>> ans = new ArrayList<>();
+
+        recurse(0,ans,nums);
+
+        return ans;
     }
 }
