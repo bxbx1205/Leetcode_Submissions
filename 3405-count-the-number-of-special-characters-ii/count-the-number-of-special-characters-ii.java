@@ -6,9 +6,11 @@ class Solution {
 
         Arrays.fill(lowercase,-1);
         Arrays.fill(uppercase,-1);
+        int n=word.length();
+        char[] arr = word.toCharArray();
 
-        for(int i=0;i<word.length();i++){
-            char ch = word.charAt(i);
+        for(int i=0;i<n;i++){
+            char ch = arr[i];
             if(ch>='a' && ch<='z'){
                 int index= ch-'a';
                 lowercase[index]=i;
