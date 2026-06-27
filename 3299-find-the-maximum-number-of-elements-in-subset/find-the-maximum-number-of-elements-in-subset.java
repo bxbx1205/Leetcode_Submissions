@@ -25,12 +25,12 @@ class Solution {
             int currentLength = 0;
             int current = num;
 
-            while (map.getOrDefault( current, 0) >= 2) {
+            while (map.containsKey(current) && map.get(current) >= 2) {
                 currentLength += 2;
                 current *= current;
             }
 
-            if (map.getOrDefault( current, 0) > 0) {
+            if (map.containsKey(current) && map.get(current) > 0) {
                 currentLength += 1;
             } else {
                 currentLength -= 1;
