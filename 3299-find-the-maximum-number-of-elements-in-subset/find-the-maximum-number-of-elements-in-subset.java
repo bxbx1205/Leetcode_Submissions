@@ -23,14 +23,14 @@ class Solution {
                 continue;
 
             int currentLength = 0;
-            long current = num;
+            int current = num;
 
-            while (map.getOrDefault((int) current, 0) >= 2) {
+            while (map.getOrDefault( current, 0) >= 2) {
                 currentLength += 2;
                 current *= current;
             }
 
-            if (map.getOrDefault((int) current, 0) > 0) {
+            if (map.getOrDefault( current, 0) > 0) {
                 currentLength += 1;
             } else {
                 currentLength -= 1;
