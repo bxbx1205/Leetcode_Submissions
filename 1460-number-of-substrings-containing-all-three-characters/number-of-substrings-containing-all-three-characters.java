@@ -1,33 +1,19 @@
 class Solution {
-    public int helper(String s,int goal){
-        int total=0;
-        int right=0;
-        int left=0;
-        int n =s.length();
+    public int numberOfSubstrings(String s) {
         HashMap<Character,Integer> map = new HashMap<>();
+        int total=0;
+        int n=s.length();
 
-        while(right<n){
-            char current=s.charAt(right);
-            map.put(current,map.getOrDefault(current,0)+1);
+        for(int right=0;right<n;right++){
+            char current = s.charAt(right);   
+            map.put(current,right);
 
-            while(map.size()>goal){
-                char currentLeft=s.charAt(left);
-
-                map.put(currentLeft,map.getOrDefault(currentLeft,1)-1);
-
-                if(map.get(currentLeft)<=0){
-                    map.remove(currentLeft);
-                }
-                left++;
+            if(map.size()>=3){
+                total+=Math.min(map.get('a'),Math.min(map.get('b'),map.get('c')))+1;
             }
 
-            total+=right-left+1;
-            right++;
         }
 
         return total;
-    }
-    public int numberOfSubstrings(String s) {
-        return helper(s,3)-helper(s,2);
     }
 }
