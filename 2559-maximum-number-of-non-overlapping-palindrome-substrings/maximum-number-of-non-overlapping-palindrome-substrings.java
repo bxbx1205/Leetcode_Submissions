@@ -5,13 +5,11 @@ class Solution {
 
         for (int start = 0; start <= n - k; start++) {
 
-            // Check palindrome of length k
             if (isPalindrome(s, start, start + k - 1)) {
                 count++;
                 start += k - 1;
             }
 
-            // Check palindrome of length k + 1
             else if (start < n - k && isPalindrome(s, start, start + k)) {
                 count++;
                 start += k;
