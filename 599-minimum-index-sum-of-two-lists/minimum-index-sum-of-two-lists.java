@@ -1,34 +1,28 @@
 class Solution {
     public String[] findRestaurant(String[] list1, String[] list2) {
 
-        HashMap<String, Integer> l1 = new HashMap<>();
-        HashMap<String, Integer> l2 = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
 
         for (int i = 0; i < list1.length; i++) {
-            l1.put(list1[i], i);
-        }
-
-        for (int i = 0; i < list2.length; i++) {
-            l2.put(list2[i], i);
+            map.put(list1[i], i);
         }
 
         List<String> ans = new ArrayList<>();
-
         int minSum = Integer.MAX_VALUE;
 
-        for (String str : l1.keySet()) {
+        for (int i = 0; i < list2.length; i++) {
 
-            if (l2.containsKey(str)) {
+            if (map.containsKey(list2[i])) {
 
-                int sum = l1.get(str) + l2.get(str);
+                int sum = i + map.get(list2[i]);
 
                 if (sum < minSum) {
                     minSum = sum;
                     ans.clear();
-                    ans.add(str);
+                    ans.add(list2[i]);
                 }
                 else if (sum == minSum) {
-                    ans.add(str);
+                    ans.add(list2[i]);
                 }
             }
         }
