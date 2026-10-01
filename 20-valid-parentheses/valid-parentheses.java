@@ -1,28 +1,27 @@
 class Solution {
     public boolean isValid(String s) {
+        int n = s.length();
         Stack<Character> stack = new Stack<>();
 
-        int n =s.length();
-        if(n==0 || n==1) return false;
-
         for(int i=0;i<n;i++){
-            char ss=s.charAt(i);
-            if(ss=='(' ||ss=='['||ss=='{'){
-                stack.push(ss);
+            char current = s.charAt(i);
+            if(current=='(' || current=='{' || current=='['){
+                stack.push(current);
             }
             else{
-                if(stack.isEmpty()){
-                    return false;
+                if(stack.isEmpty()) return false;
+                char poped = stack.pop();
+                if(current==')' && poped == '(' ||current==']' && poped == '[' ||current=='}' && poped == '{'){
+                    continue;
                 }
-                char ch = stack.peek();
-                stack.pop();
-                if((ch=='(' && ss!=')' )||(ch=='{' && ss!='}' )||(ch=='[' && ss!=']' )){
+                else{
                     return false;
                 }
             }
         }
-        if(!stack.isEmpty()) return false;
 
-        return true;
+        if(stack.isEmpty()) return true;
+
+        return false;
     }
 }
