@@ -19,7 +19,7 @@ class Solution {
         
         for(int i=0;i<n;i++){
             if(nums[i]!=i){
-                cnt=cnt&i;
+                cnt&=i;
             }
         }
 
