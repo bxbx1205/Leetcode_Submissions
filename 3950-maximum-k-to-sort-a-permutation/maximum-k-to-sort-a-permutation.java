@@ -15,7 +15,7 @@ class Solution {
     public int sortPermutation(int[] nums) {
         if(isSorted(nums)) return 0;
         int n = nums.length;
-        int cnt=Integer.MAX_VALUE;
+        int cnt=-1;
         
         for(int i=0;i<n;i++){
             if(nums[i]!=i){
